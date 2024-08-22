@@ -1,0 +1,46 @@
+Script started on 2024-08-22 01:00:11+00:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="144" LINES="11"]
+[0;32m@jsipahio [0m➜ [1;34m/workspaces/adsd/jsipahio [0;36m([1;31mmain[0;36m) [0m$ sqlite3
+SQLite version 3.45.3 2024-04-15 13:34:05
+Enter ".help" for usage hints.
+Connected to a [1mtransient in-memory database[0m.
+Use ".open FILENAME" to reopen on a persistent database.
+[?2004hsqlite> exit[K[K[K[K.exit
+[?2004l[0;32m@jsipahio [0m➜ [1;34m/workspaces/adsd/jsipahio [0;36m([1;31mmain[0;36m) [0m$ sqlite3 pets.db
+SQLite version 3.45.3 2024-04-15 13:34:05
+Enter ".help" for usage hints.
+[?2004hsqlite> .tables
+[?2004l[?2004hsqlite> create table(=[K[K pets (di integer[K[K[K[K[K[K[K[K[K[Kid integer primary key autoincrement, name text na[Kot null, type text not null, age integer, owner text);
+[?2004l[?2004hsqlite> .tables
+[?2004lpets
+[?2004hsqlite> select ([K* from pets;
+[?2004l[?2004hsqlite> insert into pets
+[?2004l[?2004h   ...> b[Kvalues ([K[K[K[K[K[K[K[K
+[?2004l[?2004h   ...> ;
+[?2004lParse error: near ";": syntax error
+  insert into pets  ;
+                    ^--- error here
+[?2004hsqlite> insert into pets (name, type, age, owner)
+[?2004l[?2004h   ...> balu[K[K[K[Kcalue[K[K[K[K[Kvalues ('dora[K[K[K[KDorathy', 'Dog', 9, 'Greg');
+[?2004l[?2004hsqlite> sle[K[Kelect * fom[K[Kromm [K[K pets
+[?2004l[?2004h   ...> ;
+[?2004l1|Dorathy|Dog|9|Greg
+[?2004hsqlite> ;select * from pets[C[C[C[C[C[C[C[Cvalues ('Dorathy', 'Dog', 9, 'Greg');[C[C[C[C[C[C[C[Cinsert into pets (name, type, age, owner)
+[?2004l[?2004h   ...> insert into pets (name, type, age, owner)[C[C[C[C[C[C[C[C;[Kselect * from pets[C[C[C[C[C[C[C[Cvalues ('Dorathy', 'Dog', 9, 'Greg');[1P[1P[1P[1P[1P[1P[1P[1@L[1@I[1@a[1@m[1P[1P[1P[1@i[1@a[1@m[C[C[C[C[C[C[C[1P[1P[1P[1@C[1@a[1@t[C[C[C[C[1P[1@8[C[C[C[C[C[C[C[1P');[1P');[1P');[1P');C');h');r');i');s');[C[C[C
+[?2004l[?2004hsqlite> values ('Liam', 'Cat', 8, 'Chris');[C[C[C[C[C[C[C[Cinsert into pets (name, type, age, owner)[C[C[C[C[C[C[C[C;[Kselect * from pets;
+[?2004l1|Dorathy|Dog|9|Greg
+2|Liam|Cat|8|Chris
+[?2004hsqlite> .[Kmoe[Kde cols[K[K[K[K[K[K[K[K[K.mode [K[K[K[K[K[Kheaders[K[K[K[K[K[K[K.headers on
+[?2004l[?2004hsqlite> .headers on[C[C[C[C[C[C[C[Cselect * from pets;[C[C[C[C[C[C[C[Cvalues ('Liam', 'Cat', 8, 'Chris');[C[C[C[C[C[C[C[C[16Pselect * from pets;
+[?2004lid|name|type|age|owner
+1|Dorathy|Dog|9|Greg
+2|Liam|Cat|8|Chris
+[?2004hsqlite> .mode
+[?2004lcurrent output mode: list
+[?2004hsqlite> mo[K[K,[K.mode col
+[?2004l[?2004hsqlite> .mode col[Kselect * from pets;
+[?2004lid  name     type  age  owner
+--  -------  ----  ---  -----
+1   Dorathy  Dog   9    Greg 
+2   Liam     Cat   8    Chris
+[?2004hsqlite> select * from pets;[C[C[C[C[C[C[C[C[10P.mode col[Kselect * from pets;[C[C[C[C[C[C[C[C[8P.headers on[C[C[C[C[C[C[C[Cselect * from pets;[C[C[C[C[C[C[C[Cvalues ('Liam', 'Cat', 8, 'Chris');[C[C[C[C[C[C[C[Cinsert into pets (name, type, age, owner)
+[?2004l[?2004h   ...> insert into pets (name, type, age, owner)[C[C[C[C[C[C[C[C[22Pselect * from pets;[C[C[C[C[C[C[C[C[10P.mode col[Kselect * from pets;[C[C[C[C[C[C[C[C[8P.headers on[C[C[C[C[C[C[C[Cselect * from pets;[C[C[C[C[C[C[C[Cvalues ('Liam', 'Cat', 8, 'Chris');[C[C[C[C[C[C[C[Cinsert into pets (name, type, age, owner)[C[C[C[C[C[C[C[C[6Pvalues ('Liam', 'Cat', 8, 'Chris');[C[C[C[1P[1P[1P[1P[1@G[1@o[1@l[1@d[1@i[1@e[C[C[C[C[C[C[C[1P[1P[1P[1@F[1@i[1@s[1@t[1P[1@h[C[C[C[C[1P[1@0[1@.[1@5[1P[1P
