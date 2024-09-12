@@ -13,7 +13,7 @@
                 <th>type</th>
                 <th>age</th>
                 <th>owner</th>
-                <th></th>
+                <th colspan="2">Actions</th>
             </tr>
             {% for row in rows %}
                 <tr>
@@ -21,6 +21,7 @@
                         <td>{{ item }}</td>
                     {% endfor %}
                     <td><a href="/delete/{{ row[0] }}">Delete</a></td>
+                    <td><a href="/update/{{ row[0] }}">Update</a></td>
                 </tr>
             {% endfor %}
         </table>
