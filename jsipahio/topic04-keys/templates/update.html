@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Update</title>
+    </head>
+    <body>
+        <h1>Update</h1>
+        <form method="post" action="/update">
+            <input hidden name="id" value="{{data[0]}}"><br>
+            <label for="name">Name:</label><br><input name="name" value="{{data[1]}}"><br>
+            <label for="type">Type:</label><br>
+            <select name="type" value="{{data[3]}}">
+                {% for row in rows %}
+                    {% for item in row %}
+                        <option value="{{ item[0] }}">
+                            {{ item[1] }}
+                        </option>
+                    {% endfor %}
+                {% endfor %}
+            </select>
+            <br>
+            <label for="age">Age:</label><br><input name="age" value="{{data[2]}}"><br>
+            <label for="owner">Owner:</label><br><input name="owner" value="{{data[4]}}"><br>
+            <button type="submit">Update</button>
+        </form>
+    </body>
+</html>

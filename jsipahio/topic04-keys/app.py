@@ -5,18 +5,31 @@ app = Flask(__name__)
 
 
 cnn = sqlite3.connect("pets.db", check_same_thread=False)
-
+cnn.execute("PRAGMA foreign_keys = 1")
 
 @app.route("/")
 @app.route("/list")
 def list_pets():
     # crs = cnn.cursor()
     crs = cnn.cursor()
-    crs.execute('select * from pets')
+    crs.execute('''
+        select p.id, p.name, p.owner, p.age, 
+            k.id, k.kind_name, k.food, k.noise 
+        from pets p join kind k on p.kind_id = k.id
+    ''')
     rows = crs.fetchall()
     rows = [list(row) for row in rows]
     print(rows)
     return render_template("list.html", prof={'name':"john", 'class':'ADSD'}, rows=rows)
+
+
+@app.route("/list/kinds")
+def list_kinds():
+    crs = cnn.cursor()
+    crs.execute('select * from kind')
+    rows = crs.fetchall()
+    rows = [list(row) for row in rows]
+    return render_template("kind_list.html", rows=rows)
 
 
 @app.route("/delete/<id>")
@@ -48,7 +61,12 @@ def get_create():
         cnn.commit()
         return redirect(url_for('list_pets',))
     if request.method == 'GET':
-        return render_template("create.html")
+        crs = cnn.cursor()
+        crs.execute("select id, kind_name from kind")
+        rows = crs.fetchall()
+        rows = [list(row) for row in rows]
+        print(rows)
+        return render_template("create.html", rows=rows)
     
 
 @app.route("/update/<id>", methods=['GET'])
@@ -56,6 +74,11 @@ def get_update(id):
     crs = cnn.cursor()
     crs.execute("select * from pets where id = ?", (id,))
     data = crs.fetchone()
+    crs = cnn.cursor()
+    crs.execute("select id, kind_name from kind")
+    rows = crs.fetchall()
+    rows = [list(row) for row in rows]
+    print(rows)
     return render_template("update.html", data=data)
 
 

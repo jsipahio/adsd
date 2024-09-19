@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>List</title>
+    </head>
+    <body>
+        <table border="solid">
+            <tr>
+                <th>id</th>
+                <th>kind</th>
+                <th>food</th>
+                <th>noise</th>
+                <th colspan="2">Actions</th>
+            </tr>
+            {% for row in rows %}
+                <tr>
+                    {% for item in row %}
+                        <td>{{ item }}</td>
+                    {% endfor %}
+                    <td><a href="/delete/{{ row[0] }}">Delete</a></td>
+                    <td><a href="/update/{{ row[0] }}">Update</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
