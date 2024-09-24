@@ -17,10 +17,11 @@
                     {% for item in row %}
                         <td>{{ item }}</td>
                     {% endfor %}
-                    <td><a href="/delete/{{ row[0] }}">Delete</a></td>
-                    <td><a href="/update/{{ row[0] }}">Update</a></td>
+                    <td><a href="/delete/kind/{{ row[0] }}">Delete</a></td>
+                    <td><a href="/update/kind/{{ row[0] }}">Update</a></td>
                 </tr>
             {% endfor %}
         </table>
+        <p>Add a new kind <a href="/create/kind">here</a>!</p>
     </body>
 </html>

@@ -12,14 +12,12 @@
         <div>This is the create template</div>
         <form action="/create" method="post">
             <label for="name">Name:</label><br><input name="name"><br>  
-            <label for="type">Type:</label><br>
-            <select name="type" value="{{data[3]}}">
+            <label for="kind">Type:</label><br>
+            <select name="kind" value="1">
                 {% for row in rows %}
-                    {% for item in row %}
-                        <option value="{{ item[0] }}">
-                            {{ item[1] }}
-                        </option>
-                    {% endfor %}
+                    <option value="{{ row[0] }}">
+                        {{ row[1] }}
+                    </option>
                 {% endfor %}
             </select>
             <br>

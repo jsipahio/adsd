@@ -19,7 +19,7 @@ def list_pets():
     ''')
     rows = crs.fetchall()
     rows = [list(row) for row in rows]
-    print(rows)
+    # print(rows)
     return render_template("list.html", prof={'name':"john", 'class':'ADSD'}, rows=rows)
 
 
@@ -54,10 +54,11 @@ def goodbye():
 def get_create():
     if request.method == 'POST':
         data = dict(request.form)
+        # print(data)
         crs = cnn.cursor()
         crs.execute("""
-        insert into pets(name, type, age, owner)
-        values (?,?,?,?)""",(data.get("name",""), data.get("type",""), int(data.get("age",0)), data.get("owner", ""),))
+        insert into pets(name, kind_id, age, owner)
+        values (?,?,?,?)""",(data.get("name",""), int(data.get("kind",0)), int(data.get("age",0)), data.get("owner", ""),))
         cnn.commit()
         return redirect(url_for('list_pets',))
     if request.method == 'GET':
@@ -65,7 +66,7 @@ def get_create():
         crs.execute("select id, kind_name from kind")
         rows = crs.fetchall()
         rows = [list(row) for row in rows]
-        print(rows)
+        # print(rows)
         return render_template("create.html", rows=rows)
     
 
@@ -78,21 +79,78 @@ def get_update(id):
     crs.execute("select id, kind_name from kind")
     rows = crs.fetchall()
     rows = [list(row) for row in rows]
-    print(rows)
-    return render_template("update.html", data=data)
+    # print(rows)
+    return render_template("update.html", data=data, rows=rows)
 
 
 @app.route("/update", methods=['POST'])
 def post_update():
-    print('hello')
+    # print('hello')
     crs = cnn.cursor()
     try:
-        data = request.form
+        data = dict(request.form)
     except:
         return "Error updating pet. try again later"
     crs.execute("""
     update pets
-    set name = ?, type = ?, age = ?, owner = ?
-    where id = ?""", (data["name"], data["type"], int(data["age"]), data["owner"], int(data["id"])))
+    set name = ?, kind_id = ?, age = ?, owner = ?
+    where id = ?""", (data["name"], int(data["kind"]), int(data["age"]), data["owner"], int(data["id"])))
     cnn.commit()
-    return redirect(url_for('hello_world'))
+    return redirect(url_for('list_pets'))
+
+
+@app.route("/update/kind/<id>", methods=['GET'])
+def get_kind_update(id):
+    crs = cnn.cursor()
+    crs.execute("select id, kind_name, food, noise from kind where id = ?", id)
+    data = crs.fetchone()
+    return render_template("kind_update.html", data=data)
+
+
+@app.route("/update/kind", methods=["POST"])
+def post_kind_update():
+    try:
+        data = dict(request.form)
+        # print(data)
+    except:
+        return "error: did not receive data to do update"
+    
+    crs = cnn.cursor()
+    crs.execute("""
+        update kind
+        set kind_name = ?,
+            food = ?,
+            noise = ?
+        where id = ? 
+    """, (data["name"], data["food"], data["noise"], data["id"]))
+    cnn.commit()
+    return redirect(url_for("list_kinds"))
+
+
+@app.route("/create/kind", methods=['GET', 'POST'])
+def create_kind():
+    if request.method == 'GET':
+        return render_template("kind_create.html")
+    elif request.method == 'POST':
+        try:
+            data = dict(request.form)
+            # print(type(data))
+        except:
+            return "request data missing"
+        crs = cnn.cursor()
+        crs.execute("""
+        insert into kind(kind_name, food, noise)
+        values(?, ?, ?)
+        """, (data["name"], data["food"], data["noise"]))
+        cnn.commit();
+        return redirect(url_for("list_kinds"))
+    else:
+        return("invalid route")
+    
+
+@app.route("/delete/kind/<id>")
+def delete_kind(id):
+    crs = cnn.cursor()
+    crs.execute("delete from kinds where id = ?", id)
+    cnn.commit()
+    return(redirect(url_for("list_kinds")))
