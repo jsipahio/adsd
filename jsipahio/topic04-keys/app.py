@@ -151,6 +151,6 @@ def create_kind():
 @app.route("/delete/kind/<id>")
 def delete_kind(id):
     crs = cnn.cursor()
-    crs.execute("delete from kinds where id = ?", id)
+    crs.execute("delete from kind where id = ?", id)
     cnn.commit()
     return(redirect(url_for("list_kinds")))
