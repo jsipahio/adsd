@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>List</title>
+    </head>
+    <body>
+        <h1>Pets</h1>
+        <table border="solid">
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>owner</th>
+                <th>age</th>
+                <th>kind name</th>
+                <th>food</th>
+                <th>noise</th>
+                <th colspan="2">Actions</th>
+            </tr>
+            {% for pet in pets %}
+                <tr>
+                    <td>pet.id</td>
+                    <td>pet.name</td>
+                    <td>pet.age</td>
+                    <td>pet.owner</td>
+                    <td>pet.kind.kind_name</td>
+                    <td>pet.kind.food</td>
+                    <td>pet.kind.noise</td>
+                    <td><a href="/delete/{{ pet.name }}">Delete</a></td>
+                    <td><a href="/update/{{ pet.name }}">Update</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <p>Add a new animal <a href="/create">here</a>!</p>
+    </body>
+</html>
