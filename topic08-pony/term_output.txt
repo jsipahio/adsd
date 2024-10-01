@@ -1,0 +1,162 @@
+Script started on 2024-09-30 21:12:10-04:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="165" LINES="13"]
+$ pip install pony
+[?2004l
+Collecting pony
+  Downloading pony-0.7.19-py3-none-any.whl.metadata (2.8 kB)
+Downloading pony-0.7.19-py3-none-any.whl (317 kB)
+[?25l   [38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/317.3 kB[0m [31m?[0m eta [36m-:--:--[0m
+[2K   [38;2;249;38;114m━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m92.2/317.3 kB[0m [31m3.3 MB/s[0m eta [36m0:00:01[0m
+[2K   [38;2;114;156;31m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m317.3/317.3 kB[0m [31m5.0 MB/s[0m eta [36m0:00:00[0m
+[?25hInstalling collected packages: pony
+Successfully installed pony-0.7.19
+[?2004h(base) ]0;john@TUFA15Ubuntu22: ~/adsd/topic08-pony[01;32mjohn@TUFA15Ubuntu22[00m:[01;34m~/adsd/topic08-pony[00m$ python
+[?2004l
+Python 3.12.2 | packaged by conda-forge | (main, Feb 16 2024, 20:50:58) [GCC 12.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from pony.orm import *
+>>> d [Kb = Database()
+>>> class Person(DbEntity):[1PEntity):[1PEntity):dEntity):bEntity):.Entity):[C[C[C[C[C[C[C[C
+...     name = Required(str)
+...     age = Requied[K[K[Kired(int)
+...     cars = Set('Car')
+... 
+>>> class Car(db.e[KEntity):
+...     m[Kmake = Required(str)
+...     model = Required(str)
+...     owne[Ker = Required(Person)
+... 
+>>> show(Pwer[K[K[Kerson)
+class Person(Entity):
+    id = PrimaryKey(int, auto=True)
+    name = Required(str)
+    age = Required(int)
+    cars = Set(Car)
+>>> db.bind(provider='sqlite', filename=':memory:')
+>>> db.bind[K[K[K[K[K[K[Kdb.generate_mapping(create_tables=True)
+>>> set_sql_deg[Kbug(True)
+>>> p1 = Person(naem[K[Kme="John")[K, age [K=20)
+>>> p2 = Person(name="Mayr[K[Kry", age =22)
+>>> p3 = Person(naem[K[Kme="Bob", aage[K[K[Kge=30)
+>>> Car[K[K[Kc2[K1 = Car(make="Toyao[K[Kota", mao[K[Kodel="Prius", owner=p2)[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kp3.cars
+<CarSet Person[new:3].cars>
+>>> list(p2.[K[K3.cars)
+[]
+>>> list(p3.cars)
+[C[C[C[C[Kc1 = Car(make="Toyota", model="Prius", owneer[K[Kr="[Kp3[K2)
+>>> c2 = Car(make="Ford", model="e[KExplorer", owner=p3)
+>>> commit()
+GET CONNECTION FROM THE LOCAL POOL
+BEGIN IMMEDIATE TRANSACTION
+INSERT INTO "Person" ("name", "age") VALUES (?, ?)
+['John', 20]
+
+INSERT INTO "Person" ("name", "age") VALUES (?, ?)
+['Mary', 22]
+
+INSERT INTO "Person" ("name", "age") VALUES (?, ?)
+['Bob', 30]
+
+INSERT INTO "Car" ("make", "model", "owner") VALUES (?, ?, ?)
+['Toyota', 'Prius', 2]
+
+INSERT INTO "Car" ("make", "model", "owner") VALUES (?, ?, ?)
+['Ford', 'Explorer', 3]
+
+COMMIT
+>>> list(p1.cars)
+[]
+>>> list(p2.cars)
+[Car[1]]
+>>> list(p2.cars)[0][K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kc = list(p2.cars)
+>>> c
+[Car[1]]
+>>> car - [K[K= c[0[[K]
+>>> car
+Car[1]
+>>> car.model
+'Prius'
+>>> c3 = Car(make="To[K[KHonda", model="Cive[Kic", owner=p2)
+>>> commit()
+BEGIN IMMEDIATE TRANSACTION
+INSERT INTO "Car" ("make", "model", "owner") VALUES (?, ?, ?)
+['Honda', 'Civic', 2]
+
+COMMIT
+>>> cars = list)p[K[K(p2.cars)
+>>> cars[0].model
+'Civic'
+>>> cars[1].model
+'Prius'
+>>> select(p for p in Person if p.age > 20)
+<pony.orm.core.Query object at 0x7857a633ce60>
+>>> list(select(p for p in Person if p.age > 1[K30[K[K20))
+BEGIN IMMEDIATE TRANSACTION
+SELECT "p"."id", "p"."name", "p"."age"
+FROM "Person" "p"
+WHERE "p"."age" > 20
+
+[Person[2], Person[3]]
+>>> list(select(p for p in Person if p.age > 20))[1@p[1@w[1@e[1@r[1@s[1@o[1@n[1P[1P[1P[1P[1P[1P[1@e[1@r[1@s[1@o[1@n[1@ [1P[1@s[1@ [1@=[1@ 
+SELECT "p"."id", "p"."name", "p"."age"
+FROM "Person" "p"
+WHERE "p"."age" > 20
+
+>>> pwerson[K[K[K[K[Ker[K[K[Kersons
+[Person[2], Person[3]]
+>>> ages = [p.age for p in persons0[K]
+>>> ages
+[22, 30]
+>>> select(p for person[K[K[K[K[K in Pes[Krson).order_v[Kby(Person.Name)[:2].show()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: type object 'Person' has no attribute 'Name'. Did you mean: 'name'?
+>>> select(p for p in Person).order_by(Person.Name)[:2].show()[1Pame)[:2].show()name)[:2].show()
+SELECT "p"."id", "p"."name", "p"."age"
+FROM "Person" "p"
+ORDER BY "p"."name"
+LIMIT 2
+
+id|name|age
+--+----+---
+3 |Bob |30 
+1 |John|20 
+>>> mary = Pers[K[K[K[KPerson.get(name-[K='Mary')
+SELECT "id", "name", "age"
+FROM "Person"
+WHERE "name" = ?
+LIMIT 2
+['Mary']
+
+>>> mary.age
+22
+>>> mary.age += 1
+>>> commit()
+UPDATE "Person"
+SET "age" = ?
+WHERE "id" = ?
+  AND "name" = ?
+  AND "age" = ?
+[23, 2, 'Mary', 22]
+
+COMMIT
+>>> a[Kcommit()
+[C[C[C[Cmary.age += 1[K = Person.get(name='Mary')
+BEGIN IMMEDIATE TRANSACTION
+SELECT "id", "name", "age"
+FROM "Person"
+WHERE "name" = ?
+LIMIT 2
+['Mary']
+
+>>> mary.age
+23
+>>> mary.delte[K[Kete()
+>>> commite[K)([K[K()[K[K[K[K[K[K[K[Krollback()
+ROLLBACK
+RELEASE CONNECTION
+>>> quit()
+[?2004h(base) ]0;john@TUFA15Ubuntu22: ~/adsd/topic08-pony[01;32mjohn@TUFA15Ubuntu22[00m:[01;34m~/adsd/topic08-pony[00m$ exit
+[?2004l
+exit
+
+Script done on 2024-09-30 21:36:57-04:00 [COMMAND_EXIT_CODE="0"]
