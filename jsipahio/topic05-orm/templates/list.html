@@ -18,15 +18,15 @@
             </tr>
             {% for pet in pets %}
                 <tr>
-                    <td>pet.id</td>
-                    <td>pet.name</td>
-                    <td>pet.age</td>
-                    <td>pet.owner</td>
-                    <td>pet.kind.kind_name</td>
-                    <td>pet.kind.food</td>
-                    <td>pet.kind.noise</td>
-                    <td><a href="/delete/{{ pet.name }}">Delete</a></td>
-                    <td><a href="/update/{{ pet.name }}">Update</a></td>
+                    <td>{{pet.id}}</td>
+                    <td>{{pet.name}}</td>
+                    <td>{{pet.age}}</td>
+                    <td>{{pet.owner}}</td>
+                    <td>{{pet.kind.kind_name}}</td>
+                    <td>{{pet.kind.food}}</td>
+                    <td>{{pet.kind.noise}}</td>
+                    <td><a href="/delete/{{ pet.id }}">Delete</a></td>
+                    <td><a href="/update/{{ pet.id }}">Update</a></td>
                 </tr>
             {% endfor %}
         </table>

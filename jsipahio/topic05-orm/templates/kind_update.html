@@ -6,10 +6,10 @@
     <body>
         <h1>Update</h1>
         <form method="post" action="/update/kind">
-            <input hidden name="id" value="{{data[0]}}"><br>
-            <label for="name">Name:</label><br><input name="name" value="{{data[1]}}"><br>
-            <label for="food">Food:</label><br><input name="food" value="{{data[2]}}"><br>
-            <label for="noise">Noise:</label><br><input name="noise" value="{{data[3]}}"><br>
+            <input hidden name="id" value="{{kind.id}}"><br>
+            <label for="name">Name:</label><br><input name="name" value="{{kind.kind_name}}"><br>
+            <label for="food">Food:</label><br><input name="food" value="{{kind.food}}"><br>
+            <label for="noise">Noise:</label><br><input name="noise" value="{{kind.noise}}"><br>
             <button type="submit">Update</button>
         </form>
     </body>

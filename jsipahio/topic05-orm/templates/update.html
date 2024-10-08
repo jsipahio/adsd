@@ -6,19 +6,19 @@
     <body>
         <h1>Update</h1>
         <form method="post" action="/update">
-            <input hidden name="id" value="{{data[0]}}"><br>
-            <label for="name">Name:</label><br><input name="name" value="{{data[1]}}"><br>
+            <input hidden name="id" value="{{pet.id}}"><br>
+            <label for="name">Name:</label><br><input name="name" value="{{pet.name}}"><br>
             <label for="type">Type:</label><br>
-            <select name="kind" value="{{data[3]}}">
-                {% for row in rows %}\
-                    <option value="{{ row[0] }}">
-                        {{ row[1] }}
+            <select name="kind" value="{{pet.kind_id}}">
+                {% for kind in kinds %}\
+                    <option value="{{ kind.id }}">
+                        {{ kind.kind_name }}
                     </option>
                 {% endfor %}
             </select>
             <br>
-            <label for="age">Age:</label><br><input name="age" value="{{data[2]}}"><br>
-            <label for="owner">Owner:</label><br><input name="owner" value="{{data[4]}}"><br>
+            <label for="age">Age:</label><br><input name="age" value="{{pet.age}}"><br>
+            <label for="owner">Owner:</label><br><input name="owner" value="{{pet.owner}}"><br>
             <button type="submit">Update</button>
         </form>
     </body>

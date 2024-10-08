@@ -12,13 +12,14 @@
                 <th>noise</th>
                 <th colspan="2">Actions</th>
             </tr>
-            {% for row in rows %}
+            {% for kind in kinds %}
                 <tr>
-                    {% for item in row %}
-                        <td>{{ item }}</td>
-                    {% endfor %}
-                    <td><a href="/delete/kind/{{ row[0] }}">Delete</a></td>
-                    <td><a href="/update/kind/{{ row[0] }}">Update</a></td>
+                    <td>{{kind.id}}</td>
+                    <td>{{kind.kind_name}}</td>
+                    <td>{{kind.food}}</td>
+                    <td>{{kind.noise}}</td>
+                    <td><a href="/delete/kind/{{ kind.id }}">Delete</a></td>
+                    <td><a href="/update/kind/{{ kind.id }}">Update</a></td>
                 </tr>
             {% endfor %}
         </table>
