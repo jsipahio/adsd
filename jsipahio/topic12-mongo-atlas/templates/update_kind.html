@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Update Kind</title>
+    </head>
+    <body>
+        <h1>Update Kind</h1>
+        <form method="post" action="/kinds/update/{{ kind['_id'] }}">
+            <input hidden name="_id" value="{{ kind['_id'] }}">
+            <input hidden name="kind_id" value="{{ kind['kind_id'] }}"><br>
+            <label for="kind_name">Name:</label><br>
+            <input name="kind_name" value="{{ kind['kind_name'] }}"><br>
+            <label for="food">Food:</label><br>
+            <input name="food" value="{{ kind['food'] }}"><br>
+            <label for="noise">Noise:</label><br>
+            <input name="noise" value="{{ kind['noise'] }}"><br>
+            <button type="submit">Update</button>
+        </form>
+    </body>
+</html>

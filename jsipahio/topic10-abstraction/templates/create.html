@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create</title>
+        <style>
+            label {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div>This is the create template</div>
+        <form action="/create" method="post">
+            <label for="name">Name:</label><br><input name="name"><br>  
+            <label for="kind">Type:</label><br>
+            <select name="kind" value="1">
+                {% for row in rows %}
+                    <option value="{{ row[0] }}">
+                        {{ row[1] }}
+                    </option>
+                {% endfor %}
+            </select>
+            <br>
+            <label for="age">Age:</label><br><input name="age"><br>
+            <label for="owner">Owner:</label><br><input name="owner"><br>
+            <button type="submit">Create</button>
+        </form>
+    </body>
+</html>

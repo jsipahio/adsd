@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Update</title>
+        <style>
+            label {
+                font-weight: bold;
+            }
+            form {
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Update Pet</h1>
+        <form method="post" action="/pets/update/{{ pet['_id'] }}">
+            <input hidden name="_id" value="{{ pet['_id'] }}"><br>
+            <label for="name">Name:</label><br><input name="name" value="{{ pet['name'] }}"><br>
+            <label for="type">Type:</label><br>
+            <select name="kind" value="{{ pet['kind'] }}">
+                {% for kind in kinds %}
+                    <option value="{{ kind['kind_id'] }}">
+                        {{ kind['kind_name'] }}
+                    </option>
+                {% endfor %}
+            </select>
+            <br>
+            <label for="age">Age:</label><br><input name="age" value="{{ pet['age'] }}"><br>
+            <label for="owner">Owner:</label><br><input name="owner" value="{{ pet['owner'] }}"><br>
+            <button type="submit">Update</button>
+        </form>
+    </body>
+</html>

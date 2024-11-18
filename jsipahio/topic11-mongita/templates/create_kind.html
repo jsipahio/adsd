@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create Kind</title>
+        <style>
+            label {
+                font-weight: bold;
+            }
+            form {
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Create New Kind</h1>
+        <form action="/kinds/create" method="post">
+            <label for="kind_name">Kind:</label><br><input name="kind_name"><br>
+            <label for="food">Food:</label><br><input name="food"><br>
+            <label for="noise">Noise:</label><br><input name="noise"><br>
+            <button type="submit">Create</button>
+        </form>
+    </body>
+</html>

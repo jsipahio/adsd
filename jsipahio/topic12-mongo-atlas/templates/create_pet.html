@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create Pet</title>
+        <style>
+            label {
+                font-weight: bold;
+            }
+            form {
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Add New Pet</h1>
+        <form action="/pets/create" method="post">
+            <label for="name">Name:</label><br>
+            <input name="name"><br>  
+            <label for="kind">Type:</label><br>
+            <select name="kind_id" value="{{ kinds[0]['_id'] }}">
+                {% for kind in kinds %}
+                    <option value="{{ kind['_id'] }}">
+                        {{ kind['kind_name'] }}
+                    </option>
+                {% endfor %}
+            </select>
+            <br>
+            <label for="age">Age:</label><br>
+            <input name="age"><br>
+            <label for="owner">Owner:</label><br>
+            <input name="owner"><br>
+            <button type="submit">Create</button>
+        </form>
+    </body>
+</html>

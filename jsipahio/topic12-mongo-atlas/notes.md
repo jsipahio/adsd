@@ -1,0 +1,23 @@
+# Mongo
+```javascript
+[
+    {
+        color:'blue',
+        bedrooms:6,
+        stories:2,
+        basement:'finished',
+        skylights:4,
+        dogs:1,
+        chimneys:1,
+        raingutters:5,
+        deck:0
+    },
+    {
+        color:'green',
+        bedrooms:3,
+        stories:1,
+        chimneys:1,
+        deck:1
+    }
+]
+```

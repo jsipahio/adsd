@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>List Kinds</title>
+    </head>
+    <body>
+        <h1>Kinds List</h1>
+        <table border="solid">
+            <tr>
+                <th>id</th>
+                <th>kind</th>
+                <th>food</th>
+                <th>noise</th>
+                <th colspan="2">Actions</th>
+            </tr>
+            {% for kind in kinds %}
+                <tr>
+                    <td>{{ kind['kind_id'] }}</td>
+                    <td>{{ kind['kind_name'] }}</td>
+                    <td>{{ kind['food'] }}</td>
+                    <td>{{ kind['noise'] }}</td>
+                    <td><a href="/kinds/delete/{{ kind['_id'] }}">Delete</a></td>
+                    <td><a href="/kinds/update/{{ kind['_id'] }}">Update</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <p>View the pets list <a href="/pets">here</a>!</p>
+        <p>Add a new kind <a href="/kinds/create">here</a>!</p>
+    </body>
+</html>

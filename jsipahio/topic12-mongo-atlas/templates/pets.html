@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>List</title>
+    </head>
+    <body>
+        <h1>Pets</h1>
+        <table border="solid">
+            <tr>
+                <th>name</th>
+                <th>owner</th>
+                <th>age</th>
+                <th>kind name</th>
+                <th>food</th>
+                <th>noise</th>
+                <th colspan="2">Actions</th>
+            </tr>
+            {% for pet in pets %}
+                <tr>
+                    <td>{{ pet['name'] }}</td>
+                    <td>{{ pet['owner'] }}</td>
+                    <td>{{ pet['age'] }}</td>
+                    <td>{{ pet['kind_name'] }}</td>
+                    <td>{{ pet['food'] }}</td>
+                    <td>{{ pet['noise'] }}</td>   
+                    <td><a href="/pets/delete/{{ pet['_id'] }}">Delete</a></td>
+                    <td><a href="/pets/update/{{ pet['_id'] }}">Update</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <p>View the kinds <a href="/kinds">here</a>!</p>
+        <p>Add a new animal <a href="/pets/create">here</a>!</p>
+    </body>
+</html>
